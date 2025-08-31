@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // <-- 1. Importa FormsModule
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BlockchainService } from './blockchain.service';
+import { LoginComponent } from './login/login.component';
+import { CredentialComponent } from './credential/credential.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    CredentialComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule // <-- 2. Agrégalo a los imports
   ],
-  providers: [],
+  providers: [BlockchainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

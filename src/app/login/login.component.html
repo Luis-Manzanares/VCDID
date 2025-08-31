@@ -1,0 +1,15 @@
+<div class="login-container">
+  <h1>Login Wallet</h1>
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label for="wallet-id">ID de la Cartera:</label>
+      <input type="text" id="wallet-id" [(ngModel)]="walletId" name="walletId" required />
+    </div>
+    <div>
+      <label for="seed-phrase">Frase Semilla:</label>
+      <input type="text" id="seed-phrase" [(ngModel)]="seedPhrase" name="seedPhrase" required />
+    </div>
+    <button type="submit">Conectar</button>
+  </form>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
