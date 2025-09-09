@@ -12,19 +12,21 @@ export class CredentialComponent implements OnInit {
   credentialData: string = '';
   retrievedDID: string = '';
   errorMessage: string = '';
+  credentialEmitted: boolean = false; // Para mostrar el mensaje solo después de emitir
 
   constructor(private blockchainService: BlockchainService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   async createCredential(): Promise<void> {
     this.errorMessage = '';
+    this.credentialEmitted = false; // Reiniciamos antes de crear
     try {
       const did = `did:ethr:${this.walletAddress}`;
       await this.blockchainService.registerDID(did);
       console.log('Credencial registrada en la blockchain.');
-      this.retrievedDID = ''; // Limpiamos el campo si se crea una nueva
+      this.retrievedDID = ''; 
+      this.credentialEmitted = true; // Solo aquí se muestra el mensaje
     } catch (error) {
       this.errorMessage = 'Error al registrar la credencial. Por favor, revisa la consola.';
       console.error(error);
@@ -42,5 +44,4 @@ export class CredentialComponent implements OnInit {
       console.error(error);
     }
   }
-
 }
